@@ -40,6 +40,7 @@ local MainUI = LocalPlayer.PlayerGui.MainUI
 local Main_Game = MainUI.Initiator.Main_Game
 local Modules = Main_Game.RemoteListener.Modules
 local SpeedBoost = 6
+local FieldOfView = 120
 local ScreechSafeRooms = {}
 local PrimaryPart = Character.PrimaryPart
 local CurrentRooms = workspace.CurrentRooms
@@ -59,7 +60,6 @@ local InteractNoclip = false
 local EnableInteractions = false
 local DisableDupe = false
 local DisableSeek = false
-local DisableBananas = false
 local NoDark = false
 local Noclip = false
 local DisableTimothy = false
@@ -479,15 +479,10 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
-Tab:Toggle("Disable Bananas","Makes it so you won't get stunned or take damage from Bananas when stepping on it.",false,function(Bool)
-        DisableBananas = Bool
-        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
-            if Object.Name == "BananaPeel" then
-                ApplySettings(Object)
-            end
-        end
-    end)
-end
+Tab:Slider("Fov", "It's Field Of View.", 0, 120, 16,function(FieldOfView)
+   FieldOfView = FieldOfView
+   ApplyFieldOfView(true)
+end)
 Tab:Toggle("Enable All Interactions","Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.",false,function(Bool)
     EnableInteractions = Bool
     for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
