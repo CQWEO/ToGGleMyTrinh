@@ -59,6 +59,7 @@ local InteractNoclip = false
 local EnableInteractions = false
 local DisableDupe = false
 local DisableSeek = false
+local DisableBananas = false
 local NoDark = false
 local Noclip = false
 local DisableTimothy = false
@@ -369,6 +370,11 @@ local function ApplySettings(Object)
         end
     end)
 end
+if Object.Name == "BananaPeel" then
+            Object.Hitbox.CanTouch = not DisableBananas
+        end
+    end)
+end
 local function ApplyCharacter(DontYield)
     task.wait(DontYield and 0 or 1)
     Character:GetAttributeChangedSignal("Hiding"):Connect(function()
@@ -473,6 +479,15 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         DisableSnare = Bool
         for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
             if Object.Name == "Snare" then
+                ApplySettings(Object)
+            end
+        end
+    end)
+end
+Tab:Toggle("Disable Bananas","Makes it so you won't get stunned or take damage from Snare when stepping on it.",false,function(Bool)
+        DisableBananas = Bool
+        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+            if Object.Name == "BananaPeel" then
                 ApplySettings(Object)
             end
         end
