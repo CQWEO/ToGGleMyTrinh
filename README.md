@@ -22,7 +22,7 @@ ImageButton.MouseButton1Down:connect(function()
 	vim:SendKeyEvent(fales, "RightControl", false, game)
 end)
 if game.CoreGui:FindFirstChild("FluxLib") or game.CoreGui:FindFirstChild("Message") then return end
-local Flux = loadstring(game:HttpGet("https://lolcat.boo/assets/flux-fixed"))()
+local Flux = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt"))()
 local Window = Flux:Window("YOU HUB", "v2.7.3", Color3.new(7,9.9), Enum.KeyCode.RightControl)
 local Tab = Window:Tab("Main", "rbxassetid://6026568198")
 local Tab2 = Window:Tab("Visual", "rbxassetid://6031763426")
