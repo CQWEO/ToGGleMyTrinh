@@ -406,6 +406,8 @@ local function ApplyCharacter(DontYield)
         end
     end)
     Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(ApplySpeed)
+
+Humanoid:GetPropertyChangedSignal("FieldOfView"):Connect(ApplyFieldOfView)
     Character:GetPropertyChangedSignal("WorldPivot"):Connect(function()
         if not Noclip then return end
         if NoclipNext then return end
