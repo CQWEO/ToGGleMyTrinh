@@ -174,11 +174,11 @@ end
 local function ApplyFieldOfView(Force)
     local Extra = 0
     local Behind = 0
-    if Humanoid:GetAttribute("FieldOfViewExtra") then
-        Extra = Humanoid:GetAttribute("FieldOfViewExtra")
+    if Humanoid:GetAttribute("FieldOfView") then
+        Extra = Humanoid:GetAttribute("FieldOfView")
     end
-    if Humanoid:GetAttribute("FieldOfViewBehind") then
-        Behind = Humanoid:GetAttribute("FieldOfViewBehind")
+    if Humanoid:GetAttribute("FieldOfView") then
+        Behind = Humanoid:GetAttribute("FieldOfView")
     end
     local MaxFieldOfView = 120 + Humanoid:GetAttribute("FieldOfView") + Extra + Behind
     if Force then
@@ -186,10 +186,10 @@ local function ApplyFieldOfView(Force)
         if require(Main_Game).crouching then
             CrouchNerf = 5
         end
-        Humanoid.FieldOfView = MaxFieldOfView + FieldOfView - CrouchNerf
+        Camera.FieldOfView = MaxFieldOfView + FieldOfView - CrouchNerf
     end
-    if Humanoid.FieldOfView <= FieldOfView then
-        Humanoid.FieldOfView += FieldOfView
+    if Cemera.FieldOfView <= FieldOfView then
+        Cemera.FieldOfView += FieldOfView
     end
 end
 local function ApplySpeed(Force)
