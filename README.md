@@ -716,7 +716,9 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     end)
 end
 Tab:Button("GOD MODE","Auto avoid Rush/Ambush.",false,function()
-if then > loadstring(game:HttpGet("https://raw.githubusercontent.com/CQWEO/GODMODE/main/GodModeByMurder"))()
+if then
+game.Players.LocalPlayer.Character:FindFirstChild("Collision")
+Collison.Position = Collison.Position - Vector3.new(0,10,0)
 Flux:Notification("God Mode Enable","OK")
 TextChatService.OnIncomingMessage = function(MessageData)
     task.spawn(function()
