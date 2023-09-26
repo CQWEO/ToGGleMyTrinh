@@ -171,6 +171,27 @@ local function ApplyCustoms(DontYield)
     TimothyModule:Destroy()
     A90Module:Destroy()
 end
+local function ApplyFieldOfView(Force)
+    local Extra = 0
+    local Behind = 0
+    if Humanoid:GetAttribute("FieldOfViewExtra") then
+        Extra = Humanoid:GetAttribute("FieldOfViewExtra")
+    end
+    if Humanoid:GetAttribute("FieldOfViewBehind") then
+        Behind = Humanoid:GetAttribute("FieldOfViewBehind")
+    end
+    local MaxFieldOfView = 120 + Humanoid:GetAttribute("FieldOfView") + Extra + Behind
+    if Force then
+        local CrouchNerf = 0
+        if require(Main_Game).crouching then
+            CrouchNerf = 5
+        end
+        Humanoid.FieldOfView = MaxFieldOfView + FieldOfView - CrouchNerf
+    end
+    if Humanoid.FieldOfView <= FieldOfView then
+        Humanoid.FieldOfView += SpeedBoost
+    end
+end
 local function ApplySpeed(Force)
     local Extra = 0
     local Behind = 0
