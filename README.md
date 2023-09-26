@@ -329,10 +329,6 @@ local function ApplySettings(Object)
             Object.CanCollide = not DisableSeek
             Object.CanTouch = not DisableSeek
         end
-	if Object.Parent and Object.Parent.Name == "Gate" then
-            Object.CanCollide = not DisableGate
-            Object.CanTouch = not DisableGate
-        end
         if Object.Name == "Painting_Small" then
             local RNG = math.random(1,19)
             if RNG == 18 then
@@ -719,6 +715,9 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
+Tab:Button("GOD MODE","Auto avoid Rush/Ambush.",false,function()
+if then > loadstring(game:HttpGet("https://raw.githubusercontent.com/CQWEO/GODMODE/main/GodModeByMurder"))()
+Flux:Notification("God Mode Enable","OK")
 TextChatService.OnIncomingMessage = function(MessageData)
     task.spawn(function()
         local ChatWindow = game.CoreGui.ExperienceChat.appLayout.chatWindow.scrollingView.bottomLockedScrollView.RCTScrollView.RCTScrollContentView
