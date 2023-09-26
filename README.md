@@ -479,10 +479,6 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
-Tab:Slider("Fov", "It's Field Of View.", 0, 120, 16,function(FieldOfView)
-   FieldOfView = FieldOfView
-   ApplyFieldOfView(true)
-end)
 Tab:Toggle("Enable All Interactions","Sets the Enabled property of all Proximity Prompts to true. Useful for getting to the Rooms without a Skeleton Key.",false,function(Bool)
     EnableInteractions = Bool
     for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
@@ -559,9 +555,13 @@ Tab:Toggle("No Breaker Puzzle","Tricks the game into thinking you completed the 
         EntityInfo.EBF:FireServer()
     end
 end)
-Tab:Slider("Speed Boost","Boosts your speed.",0,15,0,function(speed)
+Tab:Slider("Speed Boost","Boosts your speed.",0,6,0,function(speed)
     SpeedBoost = speed
     ApplySpeed(true)
+end)
+Tab:Slider("Fov", "It's Field Of View.",0,120,0,function(FieldOfView)
+   FieldOfView = FieldOfView
+   ApplyFieldOfView(true)
 end)
 if Floor.Value == "Hotel" or Floor.Value == "Fools" then
     Tab:Button("Unlock Library Padlock","Instantly inputs the Padlock code for Room 50. Can guess up to 3 digits. Requires 1 Player to have the hint paper.",function()
