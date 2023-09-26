@@ -60,7 +60,6 @@ local InteractNoclip = false
 local EnableInteractions = false
 local DisableDupe = false
 local DisableSeek = false
-local DisableGate = false
 local NoDark = false
 local Noclip = false
 local DisableTimothy = false
@@ -491,15 +490,6 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         DisableSnare = Bool
         for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
             if Object.Name == "Snare" then
-                ApplySettings(Object)
-            end
-        end
-    end)
-end
-Tab:Toggle("Disable Gate Door","It's Bye Gate.",false,function(Bool)
-        DisableGate = Bool
-        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
-            if Object.Name == "Gate" then
                 ApplySettings(Object)
             end
         end
