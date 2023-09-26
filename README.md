@@ -1,4 +1,4 @@
-local IMAGE = "rbxassetid://637373817841"
+local IMAGE = "rbxassetid://6026568198"
 local Positions = UDim2.new(0.822025776, 0, 0.0401606411, 0)
 local Sizes = UDim2.new(0, 76, 0, 70)
 local YOUHUB = Instance.new("ScreenGui")
@@ -9,11 +9,11 @@ YOUHUB.Parent = game:WaitForChild("CoreGui")
 YOUHUB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 _100x100.Name = "100x100"
 _100x100.Parent = YOUHUB
-_100x100.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_100x100.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 _100x100.Position = Positions
 _100x100.Size = UDim2.new(0, 76, 0, 70)
 ImageButton.Parent = _100x100
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ImageButton.Size = Sizes
 ImageButton.Image = IMAGE
 ImageButton.MouseButton1Down:connect(function()
@@ -60,6 +60,7 @@ local InteractNoclip = false
 local EnableInteractions = false
 local DisableDupe = false
 local DisableSeek = false
+local DisableGate = false
 local NoDark = false
 local Noclip = false
 local DisableTimothy = false
@@ -172,21 +173,14 @@ local function ApplyCustoms(DontYield)
     A90Module:Destroy()
 end
 local function ApplyFieldOfView(Force)
-    local Extra = 0
-    local Behind = 0
-    if Humanoid:GetAttribute("FieldOfView") then
-        Extra = Humanoid:GetAttribute("FieldOfView")
-    end
-    if Humanoid:GetAttribute("FieldOfView") then
-        Behind = Humanoid:GetAttribute("FieldOfView")
-    end
-    local MaxFieldOfView = 120 + Humanoid:GetAttribute("FieldOfView") + Extra + Behind
+    if Humanoid:GetAttribute("FieldOfView")
+    local FieldOfView = 120 + Humanoid:GetAttribute("FieldOfView")
     if Force then
         local CrouchNerf = 0
         if require(Main_Game).crouching then
             CrouchNerf = 5
         end
-        Camera.FieldOfView = MaxFieldOfView + FieldOfView - CrouchNerf
+        Camera.FieldOfView = FieldOfView + FieldOfView - CrouchNerf
     end
     if Cemera.FieldOfView <= FieldOfView then
         Cemera.FieldOfView += FieldOfView
@@ -335,6 +329,10 @@ local function ApplySettings(Object)
             Object.CanCollide = not DisableSeek
             Object.CanTouch = not DisableSeek
         end
+	if Object.Parent and Object.Parent.Name == "Gate" then
+            Object.CanCollide = not DisableGate
+            Object.CanTouch = not DisableGate
+        end
         if Object.Name == "Painting_Small" then
             local RNG = math.random(1,19)
             if RNG == 18 then
@@ -402,7 +400,7 @@ local function ApplyCharacter(DontYield)
     end)
     Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
         if NoDark then
-            Lighting.Ambient = Color3.fromRGB(67, 51, 56)
+            Lighting.Ambient = Color3.new(1, 1, 1)
         end
     end)
     Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(ApplySpeed)
@@ -497,6 +495,15 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         DisableSnare = Bool
         for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
             if Object.Name == "Snare" then
+                ApplySettings(Object)
+            end
+        end
+    end)
+end
+Tab:Toggle("Disable Gate Door","It's Bye Gate.",false,function(Bool)
+        DisableGate = Bool
+        for _,Object in pairs(workspace.CurrentRooms:GetDescendants()) do
+            if Object.Name == "Gate" then
                 ApplySettings(Object)
             end
         end
