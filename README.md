@@ -189,7 +189,7 @@ local function ApplyFieldOfView(Force)
         Humanoid.FieldOfView = MaxFieldOfView + FieldOfView - CrouchNerf
     end
     if Humanoid.FieldOfView <= FieldOfView then
-        Humanoid.FieldOfView += SpeedBoost
+        Humanoid.FieldOfView += FieldOfView
     end
 end
 local function ApplySpeed(Force)
