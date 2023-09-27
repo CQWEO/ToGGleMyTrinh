@@ -705,8 +705,9 @@ if Floor.Value == "Hotel" or Floor.Value == "Fools" then
         end
     end)
 end
-Tab:Button("GOD MODE","Auto avoid Rush/Ambush.",false,function()
-if then
+Tab:Button("GOD MODE","Auto avoid Rush/Ambush.",false,function(Bool)
+if Bool then
+local Collision = 
 game.Players.LocalPlayer.Character:FindFirstChild("Collision")
 Collison.Position = Collison.Position - Vector3.new(0,10,0)
 Flux:Notification("God Mode Enable","OK")
